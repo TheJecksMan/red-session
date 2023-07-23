@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 
 [project]
-name = "red-session"
+name = "redsession"
 authors = [{ name = "TheJecksMan" }]
 description = "Simple and fastest library for Redis server sessions"
 readme = "README.rst"
@@ -12,7 +12,7 @@ requires-python = ">=3.8"
 license = "MIT"
 classifiers = [
     "Operating System :: OS Independent",
-    "Development Status :: 2 - Pre-Alpha",
+    "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3 :: Only",

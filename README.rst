@@ -37,7 +37,7 @@ You can install or update starlette-middleware
 
 .. code:: shell
 
-    $ pip install red-session --upgrade
+    $ pip install redsession --upgrade
 
 
 Documentation
