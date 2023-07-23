@@ -5,10 +5,9 @@
 
 import os
 import sys
-import redsession
 
-sys.path.insert(0, os.path.abspath("."))
-sys.path.append(os.path.abspath(os.path.join(__file__, "../../")))
+sys.path.append(os.path.abspath(os.path.pardir))
+import redsession  # type: ignore # noqa # fmt: skip
 
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
@@ -16,7 +15,9 @@ sys.path.append(os.path.abspath(os.path.join(__file__, "../../")))
 project = "red-session"
 copyright = "2023, TheJecksMan"
 author = "TheJecksMan"
-version = redsession.__version__
+
+version = ".".join(redsession.__version__.split(".")[0:3])
+release = version
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
