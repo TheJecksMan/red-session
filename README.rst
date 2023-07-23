@@ -1,6 +1,6 @@
-.. image:: https://github.com/TheJecksMan/starlette-middleware/blob/main/docs/_static/logo_lib.png
+.. image:: https://github.com/TheJecksMan/red-session/blob/main/docs/_static/logo_lib.png
    :align: center
-   :alt: starlette-middleware logo
+   :alt: red-session logo
    :width: 200
 
 .. image:: https://img.shields.io/pypi/pyversions/redsession
