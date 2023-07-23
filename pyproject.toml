@@ -34,6 +34,7 @@ dependencies = [
 
 [project.urls]
 Repository = "https://github.com/TheJecksMan/red-session"
+Docs = "https://red-session.readthedocs.io/en/stable/"
 
 
 [tool.hatch.version]

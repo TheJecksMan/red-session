@@ -10,7 +10,6 @@
    :caption: Reference
 
    middleware.tree
-   faq
 
 .. toctree::
    :hidden:
@@ -22,5 +21,5 @@
    :hidden:
    :caption: Project
 
-   changelog
    GitHub <https://github.com/TheJecksMan/starlette-middleware>
+   PyPI <https://pypi.org/project/redsession/>
