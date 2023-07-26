@@ -1,12 +1,10 @@
 import pytest
-
-from starlette.requests import Request
-from starlette.testclient import TestClient
-from starlette.responses import JSONResponse
-from starlette.applications import Starlette
-
 from httpx import Cookies
 from fakeredis import aioredis
+from starlette.applications import Starlette
+from starlette.requests import Request
+from starlette.responses import JSONResponse
+from starlette.testclient import TestClient
 
 from redsession import ServerSessionMiddleware
 from redsession.backend import RedisBackend
