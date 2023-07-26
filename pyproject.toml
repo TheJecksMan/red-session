@@ -6,13 +6,12 @@ build-backend = "hatchling.build"
 [project]
 name = "redsession"
 authors = [{ name = "TheJecksMan" }]
-description = "Simple and fastest library for Redis server sessions"
+description = "Simple and fast server session middleware for FastAPI and Starlette"
 readme = "README.rst"
 requires-python = ">=3.8"
 license = "MIT"
 classifiers = [
     "Operating System :: OS Independent",
-    "Development Status :: 4 - Beta",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3 :: Only",
@@ -34,8 +33,8 @@ dependencies = [
 
 [project.urls]
 Repository = "https://github.com/TheJecksMan/red-session"
+Issues = "https://github.com/TheJecksMan/red-session/issues"
 Docs = "https://red-session.readthedocs.io/en/stable/"
-
 
 [tool.hatch.version]
 path = "redsession/__init__.py"
