@@ -42,3 +42,19 @@ path = "redsession/__init__.py"
 
 [tool.hatch.build.targets.sdist]
 exclude = ["/.github", "/docs", "/examples"]
+
+[tool.mypy]
+strict = true
+
+[tool.ruff]
+select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "F", # pyflakes
+    "I", # isort
+    "B", # flake8-bugbear
+]
+
+[tool.ruff.per-file-ignores]
+"examples/fastapi.py" = ["I001"]
+"examples/starlette.py" = ["I001"]
