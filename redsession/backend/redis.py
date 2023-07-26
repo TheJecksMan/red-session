@@ -11,7 +11,7 @@ class RedisBackend(BaseAsyncBackend):
     This class is used to connect and interact with Redis.
 
     Args:
-        redis (:class:`redis.asyncio.Redis`): Redis client.
+        redis (:obj:`redis.asyncio.Redis`): Async Redis client.
     """
 
     def __init__(self, redis: "Redis[Any]") -> None:

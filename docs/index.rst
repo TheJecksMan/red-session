@@ -21,5 +21,6 @@
    :hidden:
    :caption: Project
 
-   GitHub <https://github.com/TheJecksMan/starlette-middleware>
+   GitHub <https://github.com/TheJecksMan/red-session>
+   Issues <https://github.com/TheJecksMan/red-session/issues>
    PyPI <https://pypi.org/project/redsession/>
