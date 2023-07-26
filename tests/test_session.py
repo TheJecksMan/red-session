@@ -59,7 +59,10 @@ def test_redis(session_app: Starlette):
         response = client.post("/set_session")
         assert response.json() == {"session": {"id": 1}}
         assert response.headers.get("Set-Cookie") is not None
-        assert response.cookies.get("s") is not None
+
+        session = response.cookies.get("s").split(".")[0]
+        assert len(session) == 64  # default length value in hex
+        assert session is not None
 
         response = client.get("/get_session")
         assert response.json() == {"session": {"id": 1}}
@@ -100,3 +103,17 @@ def test_redis_uncorrect_session(session_app: Starlette):
         response = client.get("/get_session")
         assert response.json() == {"session": {}}
         assert response.headers.get("Set-Cookie") is None
+
+
+def test_redis_session_lenght(session_app: Starlette):
+    backend = RedisBackend(redis=aioredis.FakeRedis())
+
+    session_app.add_middleware(
+        ServerSessionMiddleware, backend=backend, secret_key="secret", session_length=24
+    )
+
+    with TestClient(session_app) as client:
+        response = client.post("/set_session")
+        session = response.cookies.get("s").split(".")[0]
+        assert len(session) == 48
+        assert session is not None

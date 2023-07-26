@@ -24,6 +24,10 @@ class ServerSessionMiddleware:
             is provided, the first element will be used for signing,
             and others for verification (useful for key rotation).
 
+        session_length (:obj:`int`, optional): Session length without hex conversion
+            and without signature. Default is 32. Session length * 2 + 26 (depending on
+            salt) = actual length
+
         name_cookie (:obj:`str`, optional): The name of the session
             cookie. Default is "s".
 
@@ -51,6 +55,7 @@ class ServerSessionMiddleware:
         app: ASGIApp,
         backend: BaseAsyncBackend,
         secret_key: Union[Iterable[str], str],
+        session_length: int = 32,
         name_cookie: str = "s",
         max_age: Optional[int] = 604800,  # 7 days, in seconds
         path: str = "/",
@@ -60,6 +65,7 @@ class ServerSessionMiddleware:
     ) -> None:
         self.app = app
         self.backend = backend
+        self.session_length = session_length
         self.name_cookie = name_cookie
         self.max_age = max_age
         self.path = path
@@ -109,7 +115,7 @@ class ServerSessionMiddleware:
             if scope["session"]:
                 if initial_session_was_empty:
                     # new session
-                    new_session_id = os.urandom(32).hex()
+                    new_session_id = os.urandom(self.session_length).hex()
                     signer_session = self.signer.sign(new_session_id).decode()
                     await self.backend.set(
                         new_session_id, scope["session"], self.max_age

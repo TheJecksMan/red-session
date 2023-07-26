@@ -5,6 +5,15 @@ Middleware
     :members:
     :show-inheritance:
 
+.. attention::
+
+    If you want to change the session length, read the
+    `OWASP Sheet Cheat <https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html>`_
+    first before using it.
+
+    It is also worth knowing that reducing the session length may cause the session to be repeated
+    (in Redis does not store the session signature).
+
 
 .. note::
 
