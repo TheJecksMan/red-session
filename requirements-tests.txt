@@ -1,13 +1,14 @@
 -e .
 
-fakeredis==2.17.0
+types-redis>=4.6.0.5
+fakeredis>=2.18.1,<2.19.0
 
 httpx>=0.24.1
 
-mypy==1.4.1
-ruff==0.0.280
-black==23.7.0
+mypy>=1.5.1,<1.6.0
+ruff==0.0.287
+black>=23.9.1,<23.10.0
 coverage==7.2.7
-pytest==7.4.0
+pytest>=7.4.0,<7.5.0
 
-fastapi==0.100.0
+fastapi>=0.100.0
