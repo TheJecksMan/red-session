@@ -25,13 +25,13 @@ class RedisBackend(BaseAsyncBackend):
 
     async def set(
         self, key: str, value: Dict[str, Any], ex: Optional[int] = None
-    ) -> Optional[bool]:
+    ) -> Any:
         data = orjson.dumps(value)
         return await self.redis.set(key, data, ex)
 
-    async def update(self, key: str, value: Dict[str, Any]) -> Optional[bool]:
+    async def update(self, key: str, value: Dict[str, Any]) -> Any:
         data = orjson.dumps(value)
         return await self.redis.set(key, data, keepttl=True)
 
-    async def delete(self, key: str) -> int:
+    async def delete(self, key: str) -> Any:
         return await self.redis.delete(key)
