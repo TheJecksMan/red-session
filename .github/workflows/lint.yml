@@ -27,7 +27,7 @@ jobs:
 
       - name: Check with ruff 📑
         run: |
-          ruff check redsession/ --select=E,F,W,I,B --format=github
+          ruff check redsession/ --select=E,F,W,I,B --output-format=github
 
       - name: Check with black 📑
         run: |
