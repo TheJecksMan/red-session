@@ -28,7 +28,7 @@ dynamic = ["version"]
 dependencies = [
     "starlette>=0.27.0",
     "itsdangerous>=2.1.2",
-    "redis[hiredis]>=4.6.0",
+    "redis[hiredis]>=5.0.0,<6.0.0",
     "orjson>=3.9.0",
 ]
 
