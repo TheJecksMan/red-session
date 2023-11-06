@@ -1,4 +1,4 @@
-import os
+import secrets
 from typing import Iterable, Literal, Optional, Union
 
 from itsdangerous import Signer
@@ -25,8 +25,7 @@ class ServerSessionMiddleware:
             and others for verification (useful for key rotation).
 
         session_length (:obj:`int`, optional): Session length without hex conversion
-            and without signature. Default is 32. Session length * 2 + 26 (depending on
-            salt) = actual length
+            and without signature. Default is 16.
 
         name_cookie (:obj:`str`, optional): The name of the session
             cookie. Default is "s".
@@ -55,7 +54,7 @@ class ServerSessionMiddleware:
         app: ASGIApp,
         backend: BaseAsyncBackend,
         secret_key: Union[Iterable[str], str],
-        session_length: int = 32,
+        session_length: int = 16,
         name_cookie: str = "s",
         max_age: Optional[int] = 604800,  # 7 days, in seconds
         path: str = "/",
@@ -115,7 +114,7 @@ class ServerSessionMiddleware:
             if scope["session"]:
                 if initial_session_was_empty:
                     # new session
-                    new_session_id = os.urandom(self.session_length).hex()
+                    new_session_id = secrets.token_hex(self.session_length)
                     signer_session = self.signer.sign(new_session_id).decode()
                     await self.backend.set(
                         new_session_id, scope["session"], self.max_age
