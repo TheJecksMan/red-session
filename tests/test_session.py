@@ -59,7 +59,7 @@ def test_redis(session_app: Starlette):
         assert response.headers.get("Set-Cookie") is not None
 
         session = response.cookies.get("s").split(".")[0]
-        assert len(session) == 64  # default length value in hex
+        assert len(session) == 32  # default length value in hex
         assert session is not None
 
         response = client.get("/get_session")
