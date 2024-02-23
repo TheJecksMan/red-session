@@ -1,15 +1,15 @@
-from redis.asyncio import Redis
+from random import randint
 
-from starlette.routing import Route
+from redis.asyncio import Redis
+from starlette.applications import Starlette
 from starlette.requests import Request
 from starlette.responses import JSONResponse
-from starlette.applications import Starlette
+from starlette.routing import Route
 
 from redsession import ServerSessionMiddleware
 from redsession.backend import RedisBackend
 
-
-redis = Redis(host="192.168.1.3")
+redis = Redis(host="192.168.1.3", protocol=3)
 
 
 async def get_session(request: Request):
@@ -23,7 +23,7 @@ async def set_session(request: Request):
 
 async def update_session(request: Request):
     request.session.clear()
-    request.session.update({"user_id": 2})
+    request.session.update({"user_id": randint(-100, 100)})
     return JSONResponse({"session": request.session})
 
 
