@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from abc import ABC, abstractmethod
-from typing import Any, Dict, Optional
+from typing import Any
 
 
 class BaseAsyncBackend(ABC):
@@ -9,7 +11,7 @@ class BaseAsyncBackend(ABC):
     """
 
     @abstractmethod
-    async def get(self, key: str) -> Optional[Dict[str, Any]]:
+    async def get(self, key: str) -> dict[str, Any] | None:
         """
         Getting session data by key (session ID).
 
@@ -23,8 +25,8 @@ class BaseAsyncBackend(ABC):
 
     @abstractmethod
     async def set(
-        self, key: str, value: Dict[str, Any], ex: Optional[int] = None
-    ) -> Optional[bool]:
+        self, key: str, value: dict[str, Any], ex: int | None = None
+    ) -> bool | None:
         """
         Writing session information to storage.
 
@@ -42,7 +44,7 @@ class BaseAsyncBackend(ABC):
         raise NotImplementedError()
 
     @abstractmethod
-    async def update(self, key: str, value: Dict[str, Any]) -> Optional[bool]:
+    async def update(self, key: str, value: dict[str, Any]) -> bool | None:
         """
         Updating a given session without changing the lifetime of the key.
 
@@ -57,7 +59,7 @@ class BaseAsyncBackend(ABC):
         raise NotImplementedError()
 
     @abstractmethod
-    async def delete(self, key: str) -> Optional[int]:
+    async def delete(self, key: str) -> int | None:
         """
         Removing user data from storage, must also include a key
 
