@@ -1,7 +1,11 @@
-from typing import Any, Dict, Optional
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any
 
 import orjson
-from redis.asyncio import Redis
+
+if TYPE_CHECKING:
+    from redis.asyncio import Redis
 
 from .base import BaseAsyncBackend
 
@@ -14,22 +18,20 @@ class RedisBackend(BaseAsyncBackend):
         redis (:obj:`redis.asyncio.Redis`): Async Redis client.
     """
 
-    def __init__(self, redis: "Redis[Any]") -> None:
+    def __init__(self, redis: Redis[Any]) -> None:  # type: ignore
         self.redis = redis
 
-    async def get(self, key: str) -> Optional[Dict[str, Any]]:
+    async def get(self, key: str) -> dict[str, Any] | None:
         data = await self.redis.get(key)
         if data:
             return orjson.loads(data)  # type: ignore
         return None
 
-    async def set(
-        self, key: str, value: Dict[str, Any], ex: Optional[int] = None
-    ) -> Any:
+    async def set(self, key: str, value: dict[str, Any], ex: int | None = None) -> Any:
         data = orjson.dumps(value)
         return await self.redis.set(key, data, ex)
 
-    async def update(self, key: str, value: Dict[str, Any]) -> Any:
+    async def update(self, key: str, value: dict[str, Any]) -> Any:
         data = orjson.dumps(value)
         return await self.redis.set(key, data, keepttl=True)
 
