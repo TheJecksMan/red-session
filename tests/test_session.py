@@ -1,6 +1,6 @@
 import pytest
-from httpx import Cookies
 from fakeredis import aioredis
+from httpx import Cookies
 from starlette.applications import Starlette
 from starlette.requests import Request
 from starlette.responses import JSONResponse
@@ -58,7 +58,7 @@ def test_redis(session_app: Starlette):
         assert response.json() == {"session": {"id": 1}}
         assert response.headers.get("Set-Cookie") is not None
 
-        session = response.cookies.get("s").split(".")[0]
+        session = response.cookies["s"].split(".")[0]
         assert len(session) == 32  # default length value in hex
         assert session is not None
 
@@ -112,6 +112,6 @@ def test_redis_session_lenght(session_app: Starlette):
 
     with TestClient(session_app) as client:
         response = client.post("/set_session")
-        session = response.cookies.get("s").split(".")[0]
+        session = response.cookies["s"].split(".")[0]
         assert len(session) == 48
         assert session is not None
