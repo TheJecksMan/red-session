@@ -2,7 +2,6 @@
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-
 [project]
 name = "redsession"
 authors = [{ name = "TheJecksMan" }]
@@ -26,7 +25,7 @@ classifiers = [
 dynamic = ["version"]
 
 dependencies = [
-    "starlette>=0.27.0",
+    "starlette>=0.36.3",
     "itsdangerous>=2.1.2",
     "redis[hiredis]>=5.0.0,<6.0.0",
     "orjson>=3.9.0",
@@ -46,15 +45,20 @@ exclude = ["/.github", "/docs", "/examples"]
 [tool.mypy]
 strict = true
 
-[tool.ruff]
+[tool.ruff.lint]
 select = [
-    "E", # pycodestyle errors
-    "W", # pycodestyle warnings
-    "F", # pyflakes
-    "I", # isort
-    "B", # flake8-bugbear
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "FA", # flake8-future-annotations
+    "UP", # pyupgrade
 ]
 
-[tool.ruff.per-file-ignores]
-"examples/fastapi.py" = ["I001"]
-"examples/starlette.py" = ["I001"]
+# [tool.ruff.lint.per-file-ignores]
+# "examples/fastapi.py" = ["I001"]
+# "examples/starlette.py" = ["I001"]
+
+[tool.ruff.format]
+quote-style = "double"
