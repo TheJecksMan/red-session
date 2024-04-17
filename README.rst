@@ -44,6 +44,12 @@ You can install or update starlette-middleware
     $ pip install redsession --upgrade
 
 
+If you want to use `orjson` and `hiredis` to maximize performance, use the optional dependencies
+
+.. code:: shell
+
+    $ pip install redsession[opt] --upgrade
+
 Documentation
 =============
 
