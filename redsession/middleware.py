@@ -51,6 +51,18 @@ class ServerSessionMiddleware:
             HTTPS. Default is False.
     """
 
+    __slots__ = (
+        "_app",
+        "_backend",
+        "_session_length",
+        "_name_cookie",
+        "_max_age",
+        "_path",
+        "_domain",
+        "_security_flags",
+        "signer",
+    )
+
     def __init__(
         self,
         app: ASGIApp,
