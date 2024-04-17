@@ -21,7 +21,7 @@ class RedisBackend(BaseAsyncBackend):
         redis (:obj:`redis.asyncio.Redis`): Async Redis client.
     """
 
-    def __init__(self, redis: Redis[Any]) -> None:
+    def __init__(self, redis: Redis[Any]) -> None:  # type: ignore
         self.redis = redis
 
     async def get(self, key: str) -> dict[str, Any] | None:
