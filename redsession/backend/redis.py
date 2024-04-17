@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING, Any
 try:
     import orjson as json
 except ImportError:
-    import json
+    import json  # type: ignore
 
 if TYPE_CHECKING:
     from redis.asyncio import Redis
@@ -21,7 +21,7 @@ class RedisBackend(BaseAsyncBackend):
         redis (:obj:`redis.asyncio.Redis`): Async Redis client.
     """
 
-    def __init__(self, redis: Redis[Any]) -> None:  # type: ignore
+    def __init__(self, redis: Redis[Any]) -> None:
         self.redis = redis
 
     async def get(self, key: str) -> dict[str, Any] | None:
